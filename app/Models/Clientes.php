@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clientes extends Model
 {
-    use HasFactory;
+    public function organizacion()
+    {
+        return $this->belongsTo(Organizaciones::class); #Un cliente pertenece a una organizacion
+    }
 }

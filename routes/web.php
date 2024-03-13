@@ -34,3 +34,7 @@ Route::delete('/eliminar/{id}', [PagesController::class,'eliminar'])->name('clie
 
 route::get('nosotros/{nombre?}',[PagesController::class, 'nosotros'])->name('nosotros');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
