@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Clientes;
+use App\Models\Cliente;
+use App\Models\ClienteServicio;
 
 class PagesController extends Controller
 {
     public function inicio(){
         // $clientes = Clientes::all(); #Obtenemos todos los datos de la tabla cliente
-        $clientes = Clientes::paginate(4); #Mostramos clientes en varias paginas
+        $clientes = Cliente::paginate(4); #Mostramos clientes en varias paginas
         return view("welcome",compact('clientes')); #Pasamos la variable al view
     }
 
     public function detalle($id){
-        $cliente = Clientes::findOrFail($id); #Si no encuentra el ID tira 404
-        
+        $cliente = Cliente::findOrFail($id); #Si no encuentra el ID tira 404
+
         return view('cliente.detalle', compact('cliente'));
     }
 
@@ -29,7 +30,7 @@ class PagesController extends Controller
         ]);
 
         // return $request->all();
-        $clienteNuevo = new Clientes;
+        $clienteNuevo = new Cliente;
         $clienteNuevo->nombre = $request->nombre;
         $clienteNuevo->apellido = $request->apellido;
         $clienteNuevo->dni = $request->dni;
@@ -40,12 +41,12 @@ class PagesController extends Controller
     }
 
     public function editar($id){
-        $cliente = Clientes::findOrFail($id); 
+        $cliente = Cliente::findOrFail($id); 
         return view('cliente.editar', compact('cliente'));
     }
 
     public function update(Request $request, $id){
-        $clienteUpdate = Clientes::findOrFail($id);
+        $clienteUpdate = Cliente::findOrFail($id);
         $clienteUpdate->nombre = $request->nombre;  #Con request recuperamos los datos del formulario
         $clienteUpdate->apellido = $request->apellido;
         $clienteUpdate->dni = $request->dni;
@@ -57,7 +58,7 @@ class PagesController extends Controller
 
 
     public function eliminar($id){
-        $clienteEliminar = Clientes::findOrFail($id);
+        $clienteEliminar = Cliente::findOrFail($id);
         $clienteEliminar->delete();
         return back()->with('mensaje','Cliente Eliminado');
     }
