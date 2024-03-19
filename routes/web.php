@@ -28,10 +28,6 @@ Route::put('/editar/{id}', [PagesController::class,'update'])->name('cliente.upd
 
 Route::delete('/eliminar/{id}', [PagesController::class,'eliminar'])->name('cliente.eliminar');
 
-// Route::get('fotos', [PagesController::class, 'fotos'])->name('foto');  #El nombre "foto" es para llamarlo desde la plantilla
-
-// Route::get('blog',[PagesController::class, 'noticias'])->name("noticias");
-
 route::get('nosotros/{nombre?}',[PagesController::class, 'nosotros'])->name('nosotros');
 
 
